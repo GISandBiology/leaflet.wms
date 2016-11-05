@@ -450,6 +450,11 @@ wms.Overlay = L.Layer.extend({
             'height': size.y
         };
         params[projectionKey] = crs.code;
+        
+        // Changing info_format style. Necessary if working with e.g. Geoserver and custom html styles of GetFeatureInfo
+		// default info_format=text/plain
+		params.info_format = "text/html";
+        
         params.bbox = (
             wmsVersion >= 1.3 && crs === L.CRS.EPSG4326 ?
             [se.y, nw.x, nw.y, se.x] :
